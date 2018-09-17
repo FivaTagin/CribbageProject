@@ -10,12 +10,12 @@
 ;*
 ;******************************************************************************
 */
+import CommonLib.StructOfCards;
 
 public class HandValue {
-
-  public static void main(String[] args1) { 
-
-    return;
-  }
-
+	private StructOfCards mCards = new StructOfCards();
+	public static void main (String [] Str) {
+		
+		return;
+	}
 }
