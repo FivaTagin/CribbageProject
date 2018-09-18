@@ -13,15 +13,14 @@
 import CommonLib.StructOfCards;
 
 public class HandValue {
-  private static StructOfCards mCards = new StructOfCards();
+  private static StructOfCards mCards = new StructOfCards("PACK ONE");
   
 	public static void main (String [] Str) {
     
-    System.out.println(mCards.getName());
-    System.out.println(mCards.funcPickCard(2,3));
+    System.out.println("NAME : "+mCards.getName());
 
     for (int i = 0;  i < mCards.VAR_CARDS_NUM + 1; i ++) {
-      System.out.println(mCards.funcPickRanCard());
+      System.out.println(mCards.funcPickRanCard() + " Suit :" + mCards.gSuit + " Rank : " + mCards.gRank);
     }
       
 

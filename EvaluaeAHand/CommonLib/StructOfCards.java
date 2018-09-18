@@ -27,9 +27,11 @@ enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES }
     //
     private static final int VAR_SUIT_NUM = 4;
     private static final int VAR_RANK_NUM = 13;
-    public static final int VAR_CARDS_NUM = VAR_SUIT_NUM * VAR_RANK_NUM;
     private static final Boolean VAR_UNPICKED = true;
     private static final Boolean VAR_PICKED = false;
+
+    public static final int VAR_CARDS_NUM = VAR_SUIT_NUM * VAR_RANK_NUM;
+    public static final int VAR_FAILURE_NUM = 666;
     
     //
     // Define Global Values
@@ -38,6 +40,9 @@ enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES }
     private static String mCards [][] = new String[VAR_SUIT_NUM][VAR_RANK_NUM];
     private static Boolean mCardsFlag [][] = new Boolean [VAR_SUIT_NUM][VAR_RANK_NUM];
     private static int mCardCount = 0;
+    
+    public static int gRank = 0;
+    public static int gSuit = 0;
 
     //
     // Define Global Class
@@ -104,8 +109,6 @@ enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES }
     public static String funcPickRanCard () {
       int Rank = mRan.nextInt(VAR_RANK_NUM);
       int Suit = mRan.nextInt(VAR_SUIT_NUM);
-
-
       do {
         if (((mCardsFlag [Suit][Rank] == VAR_UNPICKED) && FLAG_ONLY_ONE_PACK_OF_CARD) && 
            (mCardCount < VAR_CARDS_NUM)) {
@@ -114,12 +117,16 @@ enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES }
           mCardCount++; 
           break;
         } else if (mCardCount >= VAR_CARDS_NUM) {
+          gRank = VAR_FAILURE_NUM;
+          gSuit = VAR_FAILURE_NUM;
           return "This Pack is empty.";
 
         }
         Rank = mRan.nextInt(VAR_RANK_NUM);
         Suit = mRan.nextInt(VAR_SUIT_NUM);
       } while (true);
+      gRank = Rank;
+      gSuit = Suit;
       return mCards [Suit][Rank];
     }
  /**
