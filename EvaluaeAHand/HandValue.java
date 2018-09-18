@@ -19,6 +19,12 @@ public class HandValue {
     
     System.out.println(mCards.getName());
     System.out.println(mCards.funcPickCard(2,3));
+
+    for (int i = 0;  i < mCards.VAR_CARDS_NUM + 1; i ++) {
+      System.out.println(mCards.funcPickRanCard());
+    }
+      
+
 		return;
 	}
 }
