@@ -11,10 +11,16 @@
 */
 package CommonLib;
 
+
+enum Rank { DEUCE, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE }
+enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES }
  public class StructOfCards {
+
     private double radius; // 半徑 
     private String name;  // 名稱
- 
+
+
+
     // 無參數建構方法 
     public StructOfCards() { 
         this(0.0, "no name");
@@ -24,6 +30,12 @@ package CommonLib;
     public StructOfCards(double radius, String name) {  
         this.radius = radius; 
         this.name = name; 
+        
+    }
+
+    public static String ShowString () {
+      return mCardFace.ACE.name();
+
     }
      public double getRadius() { 
         return radius; 
