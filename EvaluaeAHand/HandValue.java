@@ -11,9 +11,11 @@
 ;******************************************************************************
 */
 import CommonLib.StructOfCards;
+import GameRule.GameRule;
 
 public class HandValue {
   private static StructOfCards mCards = new StructOfCards("PACK ONE");
+  private static GameRule mGame = new GameRule();
   
 	public static void main (String [] Str) {
     
