@@ -13,12 +13,12 @@
 import CommonLib.StructOfCards;
 
 public class HandValue {
-  private static StructOfCards mCards = new StructOfCards(10.1,"GOAT");
+  private static StructOfCards mCards = new StructOfCards();
   
 	public static void main (String [] Str) {
     
     System.out.println(mCards.getName());
-    System.out.println(mCards.ShowString());
+    System.out.println(mCards.funcPickCard(2,3));
 		return;
 	}
 }

@@ -15,40 +15,51 @@ package CommonLib;
 enum Rank { DEUCE, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE }
 enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES }
  public class StructOfCards {
+    
+    //
+    // Define Value
+    //
+    private static final int VAR_SUIT_NUM = 4;
+    private static final int VAR_RANK_NUM = 13;
 
-    private double radius; // 半徑 
-    private String name;  // 名稱
+    private static String mCards [][]=new String[VAR_SUIT_NUM][VAR_RANK_NUM];
 
+    private static void funcInitCards () {
+      for ( Suit  suit : Suit.values() )
+		for (Rank rank: Rank.values())
+          mCards[suit.ordinal()][rank.ordinal()] = rank.name() + " of " + suit.name();
 
+    }
+
+    public static String funcPickCard (int Rank, int suit) {
+      return mCards [Rank][suit];
+
+    }
+
+    private String mName;  // 名稱
 
     // 無參數建構方法 
     public StructOfCards() { 
-        this(0.0, "no name");
+      this("no name");
+      funcInitCards ();
     }
  
     // 有參數建構方法 
-    public StructOfCards(double radius, String name) {  
-        this.radius = radius; 
-        this.name = name; 
-        
+    public StructOfCards(String name) {  
+      this.mName = name; 
+      funcInitCards ();
     }
 
     public static String ShowString () {
-      return mCardFace.ACE.name();
+      return Rank.THREE.name();
+    }
 
-    }
-     public double getRadius() { 
-        return radius; 
-    }
      public String getName() { 
-        return name; 
+        return mName; 
     }
-     public void setRadius(double radius) {
-        this.radius = radius;
-    }
-    
+
     public void setName(String name) {
-        this.name = name;
+        this.mName = name;
     }
   
   } 
