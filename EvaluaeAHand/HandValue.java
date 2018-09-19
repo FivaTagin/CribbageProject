@@ -1,5 +1,4 @@
-/** @file
-
+/** @file HandValue.java
 ;******************************************************************************
 ;* Copyright (c) 2018, Chugn-Chien,An [fiva1987@gmail.com]. All Rights Reserved.
 ;*
@@ -13,19 +12,38 @@
 import CommonLib.StructOfCards;
 import GameRule.GameRule;
 
+
 public class HandValue {
+  //
+  // Define Values
+  //
+  
+
+  //
+  // Define Global Class
+  //
   private static StructOfCards mCards = new StructOfCards("PACK ONE");
   private static GameRule mGame = new GameRule();
+  private static int VAL_NUM_SINGLE_ROUND = 5;
+
+  public static String [] mInputCards = new String [VAL_NUM_SINGLE_ROUND];
   
 	public static void main (String [] Str) {
+
+    funcReachCards(Str, Str.length);
     
-    System.out.println("NAME : "+mCards.getName());
-
-    for (int i = 0;  i < mCards.VAR_CARDS_NUM + 1; i ++) {
-      System.out.println(mCards.funcPickRanCard() + " Suit :" + mCards.gSuit + " Rank : " + mCards.gRank);
-    }
-      
-
 		return;
-	}
+  }
+  
+  private static void funcReachCards (String [] Str, int Size) {
+    for (int i =0; i< Str.length; i++)
+      System.out.println("NAME : "+ Str[i]);
+    return;
+  }
+}
+
+public class ARoundOfCards {
+
+
+  
 }

@@ -1,4 +1,4 @@
-/** @file
+/** @file GameRule.java
  ;******************************************************************************
 ;* Copyright (c) 2018, Chugn-Chien,An [fiva1987@gmail.com]. All Rights Reserved.
 ;*
@@ -12,9 +12,25 @@
 
 package GameRule;
 
+import CommonLib.StructOfCards;
+
 public class GameRule {
+  //
+  // Define Global Class
+  //
+  private static StructOfCards mCards = new StructOfCards("PACK TWO");
+
+  //
+  // Define Values
+  //
+  private static int VAL_NUM_SINGLE_ROUND = 5;
 
   public GameRule () {}
+
+  public static int funcCalculatePoint (StructOfCards Cards) {
+  
+    return 0;
+  }
 
 
 }

@@ -1,4 +1,4 @@
-/** @file
+/** @file StructOfCards.java
  ;******************************************************************************
 ;* Copyright (c) 2018, Chugn-Chien,An [fiva1987@gmail.com]. All Rights Reserved.
 ;*
@@ -13,8 +13,8 @@ package CommonLib;
 
 import java.util.Random;
 
-enum Rank { DEUCE, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE }
-enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES }
+enum Rank { DEUCE, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, T, J, Q, K, A }
+enum Suit { clubs, diamonds, hearts, spades }
  public class StructOfCards {
 
     //
