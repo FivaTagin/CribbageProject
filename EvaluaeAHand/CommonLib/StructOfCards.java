@@ -208,7 +208,7 @@ enum Suit { C(0), D(1), H(2), S(3) ;
  *  funcReachCards
  *
  *  Description:
- *     Reach a card and transcript to a readable form.
+ *     Reach a card and transcript to a readable form which is integer in this case.
  *
  *  Parameters:
  *    @param[in]     String  Card : a single card.
@@ -219,9 +219,11 @@ enum Suit { C(0), D(1), H(2), S(3) ;
  *
  *---------------------------------------------------------------------------------------
  **/
-  public static void funcReachCards(String Card) {
+  public static void funcReachCards(
+    String Card
+    ) 
+  {
    
-
     gRank = funcGetRank(Card.charAt(INDEX_RANK_OF_CARDS));
     gSuit = funcGetSuit(Card.charAt(INDEX_SUIT_OF_CARDS));
   }
@@ -241,7 +243,10 @@ enum Suit { C(0), D(1), H(2), S(3) ;
  *
  *---------------------------------------------------------------------------------------
  **/
-  private static int funcGetSuit (char cSuit) {
+  private static int funcGetSuit (
+    char cSuit
+    ) 
+  {
     int VarSuit = 0;
     Suit eSuit;
 
@@ -283,7 +288,10 @@ enum Suit { C(0), D(1), H(2), S(3) ;
  *
  *---------------------------------------------------------------------------------------
  **/
-  private static int funcGetRank (char cRank) {
+  private static int funcGetRank (
+    char cRank
+    ) 
+  {
     int VarRank = 0;
     Rank rank;
     //
