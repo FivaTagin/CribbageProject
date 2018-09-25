@@ -25,12 +25,25 @@ public class GameRule {
   //
   private static final int VAL_SCORE_PAIRS = 2;
   private static final int VAL_QUANTITY_A_PAIR = 2;
+  private static final int VAL_PAIR = 2; // a pair must be only in two cards
+
   private static final int VAL_SCORE_15S = 2;
   private static final int VAL_POINT_4_JQK = 10;
   private static final int VAL_POINT_OF_15S = 15;
-  private static final int VAL_PAIR = 2; // a pair must be only in two cards
+
+  private static final int VAL_SCORE_RUN = 1;
+
+  private static final int VAL_SCORE_ONE_NOB = 1;
+  private static final int INDEX_RANK_OF_NOB = 11;
+
+  private static final int VAL_SCORE_FLUSH = 4;
+  private static final int VAL_SCORE_FLUSH_EX = 1;
+  private static final boolean FLAG_FLUSHED = true;
+  private static final boolean FLAG_UNFLUSHED = false; 
+
   private static final int VAL_RANKS_OF_A_SUIT = 14; // start with one for array,
   private static final int VAL_SUITS_OF_A_PACK = 4;
+  private static final int INDEX_FIRST_CARD = 0;
   private static final int FLAG_CARD_USED = 1;
   private static final int FLAG_CARD_UNUSED = 0; 
   private static final int VAL_FAILURE = 999;
@@ -146,7 +159,7 @@ public class GameRule {
     return allScort;
   }
 
-  /**
+/**
 *---------------------------------------------------------------------------------------
 *
 *  funcCalPairs
@@ -219,6 +232,113 @@ public class GameRule {
   {
     return 0;
   }
+
+  /**
+*---------------------------------------------------------------------------------------
+*
+*  funcCalRuns
+*
+*  Description:
+*     cacluating point for the situation of runs.
+*
+*  Parameters:
+*    @param[in]     int suitCards : the array of the suit of cards
+*    @param[in]     int rankCards : the array of the rank of cards
+*    @param[in]     int ArraySize : the size of a set of cards
+*
+*    @retval        Int allScort : the score of runs.
+*
+*---------------------------------------------------------------------------------------
+**/
+  public static int funcCalRuns (
+    int suitCards[],
+    int rankCards[], 
+    int ArraySize
+    ) 
+  { 
+    int allScort = 0;
+
+    return allScort;
+  }
+
+  private static int[] increasingsort (
+    
+    )
+  {
+    int array [] = new int [5];
+    return array;
+  }
+  /**
+*---------------------------------------------------------------------------------------
+*
+*  funcCalFlush
+*
+*  Description:
+*     cacluating point for the situation of Flush .
+*
+*  Parameters:
+*    @param[in]     int suitCards : the array of the suit of cards
+*    @param[in]     int rankCards : the array of the rank of cards
+*    @param[in]     int ArraySize : the size of a set of cards
+*
+*    @retval        Int allScort : the score of Flush.
+*
+*---------------------------------------------------------------------------------------
+**/
+  public static int funcCalFlush (
+    int suitCards[],
+    int rankCards[], 
+    int ArraySize
+    ) 
+  { 
+    int allScort = 0;
+    boolean flagFlush = FLAG_FLUSHED;
+    
+
+    return allScort;
+  }
+
+/**
+*---------------------------------------------------------------------------------------
+*
+*  funcCalNOB
+*
+*  Description:
+*     cacluating point for the situation of Flush .
+*
+*  Parameters:
+*    @param[in]     int suitCards : the array of the suit of cards
+*    @param[in]     int rankCards : the array of the rank of cards
+*    @param[in]     int ArraySize : the size of a set of cards
+*
+*    @retval        Int allScort : the score of Flush.
+*
+*---------------------------------------------------------------------------------------
+**/
+public static int funcCalNOB (
+  int suitCards[],
+  int rankCards[], 
+  int ArraySize
+  ) 
+{ 
+  int allScort = 0;
+  int startSuit = 0;
+  
+  // reach the suit of the first card.
+  startSuit = suitCards [0];
+
+  for (int countKey = 1; countKey < ArraySize; countKey++)
+    //
+    // locating a Jack which matches the same suit with the first card
+    // card array of rank is starting from zero. therefore, adjustment for the index.
+    //
+    if (suitCards [countKey] == startSuit && rankCards [countKey] == INDEX_RANK_OF_NOB - 1) {
+      allScort = VAL_SCORE_ONE_NOB;
+      break;
+    }
+
+  return allScort;
+}
 
 
 }
