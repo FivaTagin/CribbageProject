@@ -144,19 +144,7 @@ enum Suit { C(0), D(1), H(2), S(3) ;
       this.mName = name; 
       funcInitCards ();
     }
-
-    public static String ShowString () {
-      return Rank.THREE.name();
-    }
-
-     public String getName() { 
-        return mName; 
-    }
-
-    public void setName(String name) {
-        this.mName = name;
-    }
-  
+    
     public static String funcPickCard (int Rank, int Suit) {
         return mCards [Suit][Rank];
   

@@ -38,7 +38,7 @@ public class HandValue {
 
     if (Str.length != VAL_NUM_SINGLE_ROUND) {
       // error handle
-      System.out.println ("Error! ONLY Input 5 Cards due to the rule! ");
+      System.out.println ("Error! ONLY allowing to input 5 Cards due to the rule! ");
       return;
     }
     
