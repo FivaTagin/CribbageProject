@@ -68,7 +68,7 @@ enum Suit { C(0), D(1), H(2), S(3) ;
     private static final int VAR_SUIT_DIAMOND = 1;
     private static final int VAR_SUIT_HEART = 2;
     private static final int VAR_SUIT_SPADE = 3;
-    private static final int VAR_SUIT_NON = 4;
+    public static final int VAR_SUIT_NON = 4;
     private static final int VAR_RANK_ACE = 1;
     private static final int VAR_RANK_DEUCE = 2;
     private static final int VAR_RANK_THIRD = 3;

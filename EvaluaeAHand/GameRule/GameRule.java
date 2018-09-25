@@ -38,8 +38,8 @@ public class GameRule {
 
   private static final int VAL_SCORE_FLUSH = 4;
   private static final int VAL_SCORE_FLUSH_EX = 1;
-  private static final boolean FLAG_FLUSHED = true;
-  private static final boolean FLAG_UNFLUSHED = false; 
+  private static final int VAL_FLAG_FLUSHED = 4;
+
 
   private static final int VAL_RANKS_OF_A_SUIT = 14; // start with one for array,
   private static final int VAL_SUITS_OF_A_PACK = 4;
@@ -292,9 +292,27 @@ public class GameRule {
     ) 
   { 
     int allScort = 0;
-    boolean flagFlush = FLAG_FLUSHED;
+    int flushCount = 0;
+    int startSuit = 0;
+    int currentSuit = suitCards [1]; // set first hand of card's suit
     
+    // reach the suit of the first card.
+    startSuit = suitCards [0];
 
+    for (int countKey = 1; countKey < ArraySize; countKey++)
+      //
+      // checking all card in hand are same suits
+      // than check the suit between the first card and the suit of flush.
+      //
+      if (suitCards [countKey] == currentSuit) 
+        flushCount++;
+
+    if (flushCount == VAL_FLAG_FLUSHED) {
+      allScort += VAL_SCORE_FLUSH;
+      if (currentSuit == startSuit)
+        allScort += VAL_SCORE_FLUSH_EX;
+
+    }
     return allScort;
   }
 
@@ -315,30 +333,30 @@ public class GameRule {
 *
 *---------------------------------------------------------------------------------------
 **/
-public static int funcCalNOB (
-  int suitCards[],
-  int rankCards[], 
-  int ArraySize
-  ) 
-{ 
-  int allScort = 0;
-  int startSuit = 0;
-  
-  // reach the suit of the first card.
-  startSuit = suitCards [0];
+  public static int funcCalNOB (
+    int suitCards[],
+    int rankCards[], 
+    int ArraySize
+    ) 
+  { 
+    int allScort = 0;
+    int startSuit = 0;
+    
+    // reach the suit of the first card.
+    startSuit = suitCards [0];
 
-  for (int countKey = 1; countKey < ArraySize; countKey++)
-    //
-    // locating a Jack which matches the same suit with the first card
-    // card array of rank is starting from zero. therefore, adjustment for the index.
-    //
-    if (suitCards [countKey] == startSuit && rankCards [countKey] == INDEX_RANK_OF_NOB - 1) {
-      allScort = VAL_SCORE_ONE_NOB;
-      break;
-    }
+    for (int countKey = 1; countKey < ArraySize; countKey++)
+      //
+      // locating a Jack which matches the same suit with the first card
+      // card array of rank is starting from zero. therefore, adjustment for the index.
+      //
+      if (suitCards [countKey] == startSuit && rankCards [countKey] == INDEX_RANK_OF_NOB - 1) {
+        allScort = VAL_SCORE_ONE_NOB;
+        break;
+      }
 
-  return allScort;
-}
+    return allScort;
+  }
 
 
 }
