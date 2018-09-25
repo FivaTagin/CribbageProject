@@ -24,8 +24,10 @@ public class GameRule {
   // Define Values
   //
   private static final int VAL_SCORE_PAIRS = 2;
-  private static final int VAL_A_PAIR = 2;
+  private static final int VAL_QUANTITY_A_PAIR = 2;
   private static final int VAL_SCORE_15S = 2;
+  private static final int VAL_POINT_4_JQK = 10;
+  private static final int VAL_POINT_OF_15S = 15;
   private static final int VAL_PAIR = 2; // a pair must be only in two cards
   private static final int VAL_RANKS_OF_A_SUIT = 14; // start with one for array,
   private static final int VAL_SUITS_OF_A_PACK = 4;
@@ -103,7 +105,6 @@ public class GameRule {
     int allScort = 0;
     int countKey = 0;
     int countTar = 0;
-    int pairCnt = 0;
     int currentPair;
     
     //
@@ -118,14 +119,12 @@ public class GameRule {
     for (countKey = 0 ; countKey < (ArraySize - 1) ; countKey++) {
       currentPair = rankCards [countKey]; // make the card member as the element of pair.
 
-      if (mCardMarker [currentPair] >= VAL_A_PAIR) {
+      if (mCardMarker [currentPair] >= VAL_QUANTITY_A_PAIR) {
         //
         //  error handle : if the rank of cards has been marked as a pair, avoiding this element
         //
-        pairCnt = VAL_FAILURE;
         continue;
       } else {
-        pairCnt = 0;
         for (countTar = countKey + 1; countTar < ArraySize; countTar++) {
           if (currentPair == rankCards[countTar]) {
             mCardMarker [currentPair]++; // increase the counter of same rank cards in a row.
@@ -144,6 +143,73 @@ public class GameRule {
         } 
       }
     } 
+    return allScort;
+  }
+
+  /**
+*---------------------------------------------------------------------------------------
+*
+*  funcCalPairs
+*
+*  Description:
+*     cacluating point for the situation of 15s.
+*
+*  Parameters:
+*    @param[in]     int suitCards : the array of the suit of cards
+*    @param[in]     int rankCards : the array of the rank of cards
+*    @param[in]     int ArraySize : the size of a set of cards
+*
+*    @retval        Int allScort : the score of 15s.
+*
+*---------------------------------------------------------------------------------------
+**/
+  public static int funcCal15s (
+    int suitCards[],
+    int rankCards[], 
+    int ArraySize
+    ) 
+  {
+    int allScort = 0;
+    int countKey = 0;
+    int countTar = 0;  
+    int currentScort = 0;
+    int nbit = 1 << ArraySize; // the quantity of permutations for one game which is 2^n times;
+
+    //
+    // reinitialising the variable to make sure the result in correct.
+    //
+    funcInitalVariable();
+
+    //
+    // translate the rank of card to match the game's rule
+    //
+    for (int i = 0; i < ArraySize; i++) {
+      if (rankCards[i] > VAL_POINT_4_JQK ) 
+        rankCards[i] = VAL_POINT_4_JQK;
+    }
+    //
+    // scaning all permutations and making score
+    //
+    for (countKey = 0; countKey < nbit; countKey++) {
+      int buffer [] = new int [5];
+      for (countTar = 0; countTar < ArraySize; countTar++) {
+        if ((countKey & (1 << countTar)) != 0) {
+          buffer [countTar] = rankCards [countTar];
+          
+        }
+      }
+      //
+      // if the score of a permutations is equal then 15, adding score
+      // otherwise, continue the loop for the next permutation element.
+      //
+      for (int i = 0; i < ArraySize; i++)
+        currentScort += buffer [i]; 
+      if (currentScort == VAL_POINT_OF_15S) 
+        allScort += VAL_SCORE_15S;
+      currentScort = 0; // reset score for this set of card
+
+    }
+
     return allScort;
   }
 

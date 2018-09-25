@@ -48,7 +48,9 @@ public class HandValue {
       );
 
     System.out.println ("Pair Score :"+mGame.funcCalPairs(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
+    System.out.println ("15s Score :"+mGame.funcCal15s(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
 
+    
 		return;
   }
   
@@ -67,4 +69,6 @@ public class HandValue {
     }
     return;
   }
+
+
 }
