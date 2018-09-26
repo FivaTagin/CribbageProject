@@ -32,6 +32,7 @@ public class GameRule {
   private static final int VAL_POINT_OF_15S = 15;
 
   private static final int VAL_SCORE_RUN = 1;
+  private static final int VAL_MIN_RUN = 3;
 
   private static final int VAL_SCORE_ONE_NOB = 1;
   private static final int INDEX_RANK_OF_NOB = 11;
@@ -257,17 +258,52 @@ public class GameRule {
     ) 
   { 
     int allScort = 0;
+    int countCard = 0;
+    int countScore = 1;
+    int currentScore = 0;
+    int countElement = 0;
 
-    return allScort;
+    //
+    // reinitialising the variable to make sure the result in correct.
+    //
+    funcInitalVariable();
+
+    //
+    // cacluating every element in the card of hand.
+    //
+    for (countCard = 0; countCard < ArraySize; countCard++) {
+      mCardMarker [rankCards[countCard]]++;
+    }
+
+    //
+    //
+    //
+    for (countCard = 1; countCard < VAL_RANKS_OF_A_SUIT; countCard++) {
+      if (mCardMarker[countCard] != 0) {
+        //
+        // set current score. 
+        // TODO : if current element is non in the hand. the score will be setting back to 0.
+        //
+        countScore *= mCardMarker [countCard];
+        //
+        // find element in a run and make sure it is a continuous row.
+        //
+        if ((mCardMarker[countCard - 1] * mCardMarker [countCard + 1] * mCardMarker[countCard]) != 0) {
+          //
+          // 
+          //
+          if( countElement > 2 ){
+						countElement = countElement + 1;
+					}else{
+						countElement = 3;
+          }	
+        }
+      }
+    }
+
+    return allScort = countElement * countScore;
   }
 
-  private static int[] increasingsort (
-    
-    )
-  {
-    int array [] = new int [5];
-    return array;
-  }
   /**
 *---------------------------------------------------------------------------------------
 *

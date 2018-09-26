@@ -35,7 +35,7 @@ public class HandValue {
     String [] Str
     ) 
   {
-
+    int score4Hand = 0;
     if (Str.length != VAL_NUM_SINGLE_ROUND) {
       // error handle
       System.out.println ("Error! ONLY allowing to input 5 Cards due to the rule! ");
@@ -47,13 +47,17 @@ public class HandValue {
       Str.length
       );
 
-    System.out.println ("Pair Score :"+mGame.funcCalPairs(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
-    System.out.println ("15s Score :"+mGame.funcCal15s(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
-    System.out.println ("Runs Score :"+mGame.funcCalRuns(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
-    System.out.println ("Flush Score :"+mGame.funcCalFlush(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
-    System.out.println ("NOB Score :"+mGame.funcCalNOB(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
-
-    
+    // System.out.println ("Pair Score :"+mGame.funcCalPairs(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
+    // System.out.println ("15s Score :"+mGame.funcCal15s(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
+    // System.out.println ("Runs Score :"+mGame.funcCalRuns(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
+    // System.out.println ("Flush Score :"+mGame.funcCalFlush(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
+    // System.out.println ("NOB Score :"+mGame.funcCalNOB(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
+    score4Hand += mGame.funcCalPairs(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND); 
+    score4Hand += mGame.funcCal15s(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND); 
+    score4Hand += mGame.funcCalRuns(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND); 
+    score4Hand += mGame.funcCalNOB(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND); 
+    score4Hand += mGame.funcCalFlush(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND); 
+    System.out.println(score4Hand);
 		return;
   }
   
@@ -64,11 +68,11 @@ public class HandValue {
   {
 
     for (int i =0; i< Str.length; i++) {
-      System.out.print("NAME : "+ Str[i].charAt(mCards.INDEX_RANK_OF_CARDS) + Str[i].charAt(mCards.INDEX_SUIT_OF_CARDS));
+      // System.out.print("NAME : "+ Str[i].charAt(mCards.INDEX_RANK_OF_CARDS) + Str[i].charAt(mCards.INDEX_SUIT_OF_CARDS));
       mCards.funcReachCards (Str[i]);
       mInFaceRank [i] = mCards.gRank;
       mInFaceSuit [i] = mCards.gSuit;
-      System.out.println(" Value : " + mInFaceRank[i] + mInFaceSuit[i]);
+      // System.out.println(" Value : " + mInFaceRank[i] + mInFaceSuit[i]);
     }
     return;
   }
