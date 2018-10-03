@@ -134,13 +134,6 @@ enum Suit { C(0), D(1), H(2), S(3) ;
         }
     }
 
-    // 無參數建構方法 
-    public StructOfCards() { 
-      this("no name");
-      funcInitCards ();
-    }
- 
-    // 有參數建構方法 
     public StructOfCards(String name) {  
       this.mName = name; 
       funcInitCards ();
@@ -149,7 +142,7 @@ enum Suit { C(0), D(1), H(2), S(3) ;
     public static String funcPickCard (int Rank, int Suit) {
         return mCards [Suit][Rank];
   
-      }
+    }
     
  /**
  *---------------------------------------------------------------------------------------

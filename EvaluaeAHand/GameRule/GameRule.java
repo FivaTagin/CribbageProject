@@ -91,6 +91,67 @@ public class GameRule {
   public GameRule () {
     funcInitalVariable();
   }
+/**
+*---------------------------------------------------------------------------------------
+*
+*  funcGetPermutations
+*
+*  Description:
+*     cacluating Permutations for the situation of a designated set.
+*     formula is inQuantity! / (qSet! * (inQuantity- qSet)!)
+*
+*  Parameters:
+*    @param[in]     int inQuantity : the number of input's elements
+*    @param[in]     int qSet : the quantity of a Set
+*
+*    @retval        Int allScort : the score of paris.
+*
+*---------------------------------------------------------------------------------------
+**/
+  private static int funcGetPermutations (
+    int inQuantity, 
+    int qSet
+    ) 
+  {
+    int permutations = 0;
+
+    if (inQuantity <= qSet ) return 0; // error handle
+    
+    // calculate permutations
+    permutations = funcGetFactorial(inQuantity) / (funcGetFactorial(qSet) * funcGetFactorial(inQuantity - qSet));
+
+    return permutations;
+  }
+
+/**
+*---------------------------------------------------------------------------------------
+*
+*  funcGetFactorial
+*
+*  Description:
+*     cacluating factorial 
+*     formula is 1 * 2 * 3 *...* N
+*
+*  Parameters:
+*    @param[in]     int input : the number of factorial
+*
+*    @retval        Int allScort : the result of factorial.
+*
+*---------------------------------------------------------------------------------------
+**/
+  private static int funcGetFactorial (
+    int input
+    ) 
+  {
+    int tempCnt;
+    int factorial = 1;
+    
+    for (tempCnt = 1; tempCnt <= input; tempCnt++) 
+      factorial *= tempCnt;
+    
+    return factorial;
+
+  }
 
 /**
 *---------------------------------------------------------------------------------------
@@ -109,61 +170,48 @@ public class GameRule {
 *
 *---------------------------------------------------------------------------------------
 **/
-  public static int funcCalPairs (
-    int suitCards[],
-    int rankCards[], 
-    int ArraySize
-    ) 
-  {
+public static int funcCalPairs (
+  int suitCards[],
+  int rankCards[], 
+  int ArraySize
+  ) 
+{
 
-    int allScort = 0;
-    int countKey = 0;
-    int countTar = 0;
-    int currentPair;
-    
-    //
-    // reinitialising the variable to make sure the result in correct.
-    //
-    funcInitalVariable();
-    
-    //
-    // To scan all the element in the card array and making a comparsion between the first element and 
-    // the rest of part to located the form of pairs
-    //
-    for (countKey = 0 ; countKey < (ArraySize - 1) ; countKey++) {
-      currentPair = rankCards [countKey]; // make the card member as the element of pair.
-
-      if (mCardMarker [currentPair] >= VAL_QUANTITY_A_PAIR) {
-        //
-        //  error handle : if the rank of cards has been marked as a pair, avoiding this element
-        //
-        continue;
-      } else {
-        for (countTar = countKey + 1; countTar < ArraySize; countTar++) {
-          if (currentPair == rankCards[countTar]) {
-            mCardMarker [currentPair]++; // increase the counter of same rank cards in a row.
-          }
-        }
-        //
-        // if pair count is over than 2 or small than 1, it's not match the rule of pair.
-        //
-        if (mCardMarker [currentPair] < VAL_PAIR && mCardMarker [currentPair] > 0) {
-          //
-          // the Pair has been located, the score is added and mark the card flag as used.
-          // 
-          
-          allScort+= VAL_SCORE_PAIRS;
-          mCardMarker [currentPair] += FLAG_CARD_USED;  
-        } 
-      }
-    } 
-    return allScort;
+  int allScort = 0;
+  int countKey = 0;
+  int countTar = 0;
+  int currentPair;
+  int countCard = 0;  
+  
+  //
+  // reinitialising the variable to make sure the result in correct.
+  //
+  funcInitalVariable();
+  
+  //
+  // calcuating every element in the card of hand.
+  //
+  for (countCard = 0; countCard < ArraySize; countCard++) {
+    mCardMarker [rankCards[countCard]]++;
   }
+
+  //
+  // calcuating the score of pairs, using factorial method
+  //
+  for (countCard = 0; countCard < VAL_RANKS_OF_A_SUIT; countCard++) {
+    if (mCardMarker [countCard] >= VAL_PAIR ) // pair is found
+    // find how many pairs in the hand
+    allScort += funcGetPermutations (mCardMarker [countCard], VAL_PAIR); 
+  }
+  // illustrate the score of pairs
+  allScort *= VAL_SCORE_PAIRS;
+  return allScort;
+}
 
 /**
 *---------------------------------------------------------------------------------------
 *
-*  funcCalPairs
+*  funcCal15s
 *
 *  Description:
 *     cacluating point for the situation of 15s.
