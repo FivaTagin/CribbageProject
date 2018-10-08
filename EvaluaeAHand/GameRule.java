@@ -10,9 +10,9 @@
 ;******************************************************************************
 */
 
-package GameRule;
+//  package src;
 
-import CommonLib.StructOfCards;
+// import CommonLib.StructOfCards;
 
 public class GameRule {
   //
@@ -24,15 +24,15 @@ public class GameRule {
   // Define Values
   //
   private static final int VAL_SCORE_PAIRS = 2;
-  private static final int VAL_QUANTITY_A_PAIR = 2;
+  // private static final int VAL_QUANTITY_A_PAIR = 2;
   private static final int VAL_PAIR = 2; // a pair must be only in two cards
 
   private static final int VAL_SCORE_15S = 2;
   private static final int VAL_POINT_4_JQK = 10;
   private static final int VAL_POINT_OF_15S = 15;
 
-  private static final int VAL_SCORE_RUN = 1;
-  private static final int VAL_MIN_RUN = 3;
+  // private static final int VAL_SCORE_RUN = 1;
+  // private static final int VAL_MIN_RUN = 3;
 
   private static final int VAL_SCORE_ONE_NOB = 1;
   private static final int INDEX_RANK_OF_NOB = 11;
@@ -305,11 +305,10 @@ public static int funcCalPairs (
     int ArraySize
     ) 
   { 
-    int allScort = 0;
     int countCard = 0;
     int countScore = 1;
-    int currentScore = 0;
     int countElement = 0;
+    int allScort = 0;
 
     //
     // reinitialising the variable to make sure the result in correct.
@@ -324,7 +323,7 @@ public static int funcCalPairs (
     }
 
     //
-    //
+    // scaning all count of cards to find all set of runs
     //
     for (countCard = 1; countCard < VAL_RANKS_OF_A_SUIT; countCard++) {
       if (mCardMarker[countCard] != 0) {
@@ -338,7 +337,9 @@ public static int funcCalPairs (
         //
         if ((mCardMarker[countCard - 1] * mCardMarker [countCard + 1] * mCardMarker[countCard]) != 0) {
           //
-          // 
+          // if find three hand cards with continuously sequence, the countElement will be marked
+          // but the hand value has to make sure there might be 5 serious card in the hand.
+          // therefore, after finding a row of cards, the next element will make countElement to be added
           //
           if( countElement > 2 ){
 						countElement = countElement + 1;

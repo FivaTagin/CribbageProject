@@ -9,8 +9,8 @@
 ;*
 ;******************************************************************************
 */
-import CommonLib.StructOfCards;
-import GameRule.GameRule;
+// import CommonLib.StructOfCards;
+// import GameRule.GameRule;
 
 
 public class HandValue {
