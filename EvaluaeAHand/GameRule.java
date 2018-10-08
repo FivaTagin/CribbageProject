@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /** @file GameRule.java
  ;******************************************************************************
 ;* Copyright (c) 2018, Chugn-Chien,An [fiva1987@gmail.com]. All Rights Reserved.
@@ -40,11 +42,12 @@ public class GameRule {
   private static final int VAL_SCORE_FLUSH = 4;
   private static final int VAL_SCORE_FLUSH_EX = 1;
   private static final int VAL_FLAG_FLUSHED = 4;
+  
 
 
   private static final int VAL_RANKS_OF_A_SUIT = 14; // start with one for array,
   private static final int VAL_SUITS_OF_A_PACK = 4;
-  private static final int INDEX_FIRST_CARD = 0;
+  private static final int INDEX_START_CARD = 4;
   private static final int FLAG_CARD_USED = 1;
   private static final int FLAG_CARD_UNUSED = 0; 
   private static final int VAL_FAILURE = 999;
@@ -115,7 +118,7 @@ public class GameRule {
   {
     int permutations = 0;
 
-    if (inQuantity <= qSet ) return 0; // error handle
+    if (inQuantity < qSet ) return 0; // error handle
     
     // calculate permutations
     permutations = funcGetFactorial(inQuantity) / (funcGetFactorial(qSet) * funcGetFactorial(inQuantity - qSet));
@@ -198,10 +201,11 @@ public static int funcCalPairs (
   //
   // calcuating the score of pairs, using factorial method
   //
-  for (countCard = 0; countCard < VAL_RANKS_OF_A_SUIT; countCard++) {
-    if (mCardMarker [countCard] >= VAL_PAIR ) // pair is found
-    // find how many pairs in the hand
-    allScort += funcGetPermutations (mCardMarker [countCard], VAL_PAIR); 
+  for (countCard = 0; countCard < VAL_RANKS_OF_A_SUIT - 1; countCard++) {
+    if (mCardMarker [countCard] >= VAL_PAIR ) {// pair is found 
+      // find how many pairs in the hand
+      allScort += funcGetPermutations (mCardMarker [countCard], VAL_PAIR); 
+    }
   }
   // illustrate the score of pairs
   allScort *= VAL_SCORE_PAIRS;
@@ -236,18 +240,19 @@ public static int funcCalPairs (
     int countTar = 0;  
     int currentScort = 0;
     int nbit = 1 << ArraySize; // the quantity of permutations for one game which is 2^n times;
-
+    int tempCards [] = new int [ArraySize];
     //
     // reinitialising the variable to make sure the result in correct.
     //
     funcInitalVariable();
+    tempCards = Arrays.copyOf(rankCards, ArraySize);
 
     //
     // translate the rank of card to match the game's rule
     //
     for (int i = 0; i < ArraySize; i++) {
-      if (rankCards[i] > VAL_POINT_4_JQK ) 
-        rankCards[i] = VAL_POINT_4_JQK;
+      if (tempCards[i] > VAL_POINT_4_JQK ) 
+      tempCards[i] = VAL_POINT_4_JQK;
     }
     //
     // scaning all permutations and making score
@@ -256,7 +261,7 @@ public static int funcCalPairs (
       int buffer [] = new int [5];
       for (countTar = 0; countTar < ArraySize; countTar++) {
         if ((countKey & (1 << countTar)) != 0) {
-          buffer [countTar] = rankCards [countTar];
+          buffer [countTar] = tempCards [countTar];
           
         }
       }
@@ -325,7 +330,7 @@ public static int funcCalPairs (
     //
     // scaning all count of cards to find all set of runs
     //
-    for (countCard = 1; countCard < VAL_RANKS_OF_A_SUIT; countCard++) {
+    for (countCard = 1; countCard < VAL_RANKS_OF_A_SUIT - 1; countCard++) {
       if (mCardMarker[countCard] != 0) {
         //
         // set current score. 
@@ -379,10 +384,10 @@ public static int funcCalPairs (
     int allScort = 0;
     int flushCount = 0;
     int startSuit = 0;
-    int currentSuit = suitCards [1]; // set first hand of card's suit
+    int currentSuit = suitCards [0]; // set first hand of card's suit
     
     // reach the suit of the first card.
-    startSuit = suitCards [0];
+    startSuit = suitCards [INDEX_START_CARD];
 
     for (int countKey = 1; countKey < ArraySize; countKey++)
       //
@@ -426,20 +431,20 @@ public static int funcCalPairs (
   { 
     int allScort = 0;
     int startSuit = 0;
+    int countKey = 0;
     
     // reach the suit of the first card.
-    startSuit = suitCards [0];
-
-    for (int countKey = 1; countKey < ArraySize; countKey++)
+    startSuit = suitCards [4];
+    for (countKey = 0; countKey < ArraySize - 1; countKey++) {
       //
       // locating a Jack which matches the same suit with the first card
       // card array of rank is starting from zero. therefore, adjustment for the index.
       //
-      if (suitCards [countKey] == startSuit && rankCards [countKey] == INDEX_RANK_OF_NOB - 1) {
+      if (suitCards [countKey] == startSuit && rankCards [countKey] == INDEX_RANK_OF_NOB) {
         allScort = VAL_SCORE_ONE_NOB;
         break;
       }
-
+    }
     return allScort;
   }
 

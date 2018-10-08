@@ -46,17 +46,17 @@ public class HandValue {
       Str, 
       Str.length
       );
-
-    // System.out.println ("Pair Score :"+mGame.funcCalPairs2(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
+  
+    // System.out.println ("Pair Score :"+mGame.funcCalPairs(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
     // System.out.println ("15s Score :"+mGame.funcCal15s(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
     // System.out.println ("Runs Score :"+mGame.funcCalRuns(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
     // System.out.println ("Flush Score :"+mGame.funcCalFlush(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
     // System.out.println ("NOB Score :"+mGame.funcCalNOB(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
-    score4Hand += mGame.funcCalPairs(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND); 
-    score4Hand += mGame.funcCal15s(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND); 
-    score4Hand += mGame.funcCalRuns(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND); 
     score4Hand += mGame.funcCalNOB(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND); 
+    score4Hand += mGame.funcCalPairs(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND); 
+    score4Hand += mGame.funcCalRuns(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND); 
     score4Hand += mGame.funcCalFlush(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND); 
+    score4Hand += mGame.funcCal15s(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND);
     System.out.println(score4Hand);
 		return;
   }
