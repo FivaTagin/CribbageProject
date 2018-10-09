@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /** @file GameRule.java
  ;******************************************************************************
 ;* Copyright (c) 2018, Chugn-Chien,An [fiva1987@gmail.com]. All Rights Reserved.
@@ -11,10 +9,7 @@ import java.util.Arrays;
 ;*
 ;******************************************************************************
 */
-
-//  package src;
-
-// import CommonLib.StructOfCards;
+import java.util.Arrays;
 
 public class GameRule {
   //
@@ -44,8 +39,8 @@ public class GameRule {
   private static final int VAL_FLAG_FLUSHED = 4;
   
 
-
-  private static final int VAL_RANKS_OF_A_SUIT = 14; // start with one for array,
+  // start with one for array, and make a additional space for the boundary values
+  private static final int VAL_RANKS_OF_A_SUIT = 15;
   private static final int VAL_SUITS_OF_A_PACK = 4;
   private static final int INDEX_START_CARD = 4;
   private static final int FLAG_CARD_USED = 1;
@@ -181,9 +176,6 @@ public static int funcCalPairs (
 {
 
   int allScort = 0;
-  int countKey = 0;
-  int countTar = 0;
-  int currentPair;
   int countCard = 0;  
   
   //
@@ -201,7 +193,7 @@ public static int funcCalPairs (
   //
   // calcuating the score of pairs, using factorial method
   //
-  for (countCard = 0; countCard < VAL_RANKS_OF_A_SUIT - 1; countCard++) {
+  for (countCard = 0; countCard < VAL_RANKS_OF_A_SUIT; countCard++) {
     if (mCardMarker [countCard] >= VAL_PAIR ) {// pair is found 
       // find how many pairs in the hand
       allScort += funcGetPermutations (mCardMarker [countCard], VAL_PAIR); 
@@ -330,7 +322,7 @@ public static int funcCalPairs (
     //
     // scaning all count of cards to find all set of runs
     //
-    for (countCard = 1; countCard < VAL_RANKS_OF_A_SUIT - 1; countCard++) {
+    for (countCard = 1; countCard < VAL_RANKS_OF_A_SUIT; countCard++) {
       if (mCardMarker[countCard] != 0) {
         //
         // set current score. 
@@ -349,7 +341,7 @@ public static int funcCalPairs (
           if( countElement > 2 ){
 						countElement = countElement + 1;
 					}else{
-						countElement = 3;
+						countElement = 3                        ;
           }	
         }
       }
@@ -389,19 +381,18 @@ public static int funcCalPairs (
     // reach the suit of the first card.
     startSuit = suitCards [INDEX_START_CARD];
 
-    for (int countKey = 1; countKey < ArraySize; countKey++)
+    for (int countKey = 0; countKey < ArraySize - 1; countKey++) {
       //
       // checking all card in hand are same suits
       // than check the suit between the first card and the suit of flush.
       //
       if (suitCards [countKey] == currentSuit) 
         flushCount++;
-
+    }
     if (flushCount == VAL_FLAG_FLUSHED) {
       allScort += VAL_SCORE_FLUSH;
       if (currentSuit == startSuit)
         allScort += VAL_SCORE_FLUSH_EX;
-
     }
     return allScort;
   }
@@ -448,5 +439,4 @@ public static int funcCalPairs (
     return allScort;
   }
 
-
-}
+} // the end of clasee

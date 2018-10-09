@@ -9,9 +9,7 @@
 ;*
 ;******************************************************************************
 */
-// package src;
 
-import java.util.Random;
 import java.lang.*;
 import java.util.*;
 enum Rank { 
@@ -104,10 +102,6 @@ enum Suit { C(0), D(1), H(2), S(3) ;
     // Define Global Class
     //
     private static Random mRan = new Random();
-
-    //
-    // Functions
-    //
 
 
 /** 

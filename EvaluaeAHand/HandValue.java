@@ -9,9 +9,6 @@
 ;*
 ;******************************************************************************
 */
-// import CommonLib.StructOfCards;
-// import GameRule.GameRule;
-
 
 public class HandValue {
   //
@@ -46,7 +43,8 @@ public class HandValue {
       Str, 
       Str.length
       );
-  
+    // for (int x = 0 ; x < 5 ; x++)
+    //   System.out.print (Str[x].charAt(0));
     // System.out.println ("Pair Score :"+mGame.funcCalPairs(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
     // System.out.println ("15s Score :"+mGame.funcCal15s(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
     // System.out.println ("Runs Score :"+mGame.funcCalRuns(mInFaceSuit, mInFaceRank, VAL_NUM_SINGLE_ROUND));
